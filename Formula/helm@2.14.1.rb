@@ -6,9 +6,9 @@ class HelmAT2141 < Formula
       :revision => "5270352a09c7e8b6e8c9593002a73535276507c0"
 
   bottle do
-    cellar :any_skip_relocation
     root_url "https://dl.bintray.com/stephenc/homebrew"
     sha256 "40d8987e302e6ef084d6d822cb24bd1b55ecb76012ebfcea989c5786dc4e1493" => :mojave
+    sha256 "7573b1b7f549ced04634fc4382c82bdc4763eac7da6c8b6104034597312e08a7" => :catalina
   end
 
   keg_only :versioned_formula
