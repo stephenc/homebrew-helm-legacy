@@ -7,9 +7,8 @@ class HelmAT2141 < Formula
 
   bottle do
     cellar :any_skip_relocation
-    sha256 "1450f1bdc13f6ac6f08c3edcefbdf0301a73d6158a8335b3fec68c32bf367d7c" => :catalina
-    sha256 "eedc16bde2576c3ddb4d02213154ad09951e5e65ec2d1a1ec1e451d6fa5108b2" => :mojave
-    sha256 "c9d3fe248f6231c860f7cc0226bea285284f7a8af82ee5d2d88e35c9c407fb0f" => :high_sierra
+    root_url "https://dl.bintray.com/stephenc/homebrew"
+    sha256 "40d8987e302e6ef084d6d822cb24bd1b55ecb76012ebfcea989c5786dc4e1493" => :mojave
   end
 
   keg_only :versioned_formula
