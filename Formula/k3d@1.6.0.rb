@@ -4,7 +4,7 @@ class K3dAT160 < Formula
   url "https://github.com/rancher/k3d/archive/v1.6.0.tar.gz"
   sha256 "a6c6b9680e2026cdbcaf78ce97269994c0b117c4e2515e89129aecb67334a0e9"
 
-  depends_on "go" => :build
+  depends_on "go@1.14" => :build
 
   def install
     system "go", "build",

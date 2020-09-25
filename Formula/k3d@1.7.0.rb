@@ -6,7 +6,7 @@ class K3dAT170 < Formula
   license "MIT"
   revision 1
 
-  depends_on "go" => :build
+  depends_on "go@1.14" => :build
 
   def install
     system "go", "build",
