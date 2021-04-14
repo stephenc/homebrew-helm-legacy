@@ -1,14 +1,14 @@
 class HelmAT2141 < Formula
-  desc "The Kubernetes package manager"
+  desc "Kubernetes package manager"
   homepage "https://helm.sh/"
   url "https://github.com/helm/helm.git",
-      :tag      => "v2.14.1",
-      :revision => "5270352a09c7e8b6e8c9593002a73535276507c0"
+      tag:      "v2.14.1",
+      revision: "5270352a09c7e8b6e8c9593002a73535276507c0"
 
   bottle do
     root_url "https://dl.bintray.com/stephenc/homebrew"
-    sha256 "40d8987e302e6ef084d6d822cb24bd1b55ecb76012ebfcea989c5786dc4e1493" => :mojave
-    sha256 "7573b1b7f549ced04634fc4382c82bdc4763eac7da6c8b6104034597312e08a7" => :catalina
+    sha256 mojave:   "40d8987e302e6ef084d6d822cb24bd1b55ecb76012ebfcea989c5786dc4e1493"
+    sha256 catalina: "7573b1b7f549ced04634fc4382c82bdc4763eac7da6c8b6104034597312e08a7"
   end
 
   keg_only :versioned_formula
@@ -32,10 +32,10 @@ class HelmAT2141 < Formula
       bin.install "bin/tiller"
       man1.install Dir["docs/man/man1/*"]
 
-      output = Utils.popen_read("SHELL=bash #{bin}/helm completion bash")
+      output = Utils.safe_popen_read({ "SHELL" => "bash" }, "", "#{bin}/helm", "completion", "bash")
       (bash_completion/"helm").write output
 
-      output = Utils.popen_read("SHELL=zsh #{bin}/helm completion zsh")
+      output = Utils.safe_popen_read({ "SHELL" => "zsh" }, "", "#{bin}/helm", "completion", "zsh")
       (zsh_completion/"_helm").write output
 
       prefix.install_metafiles
@@ -48,6 +48,9 @@ class HelmAT2141 < Formula
 
     version_output = shell_output("#{bin}/helm version --client 2>&1")
     assert_match "GitTreeState:\"clean\"", version_output
-    assert_match stable.instance_variable_get(:@resource).instance_variable_get(:@specs)[:revision], version_output if build.stable?
+    if build.stable?
+      assert_match stable.instance_variable_get(:@resource).instance_variable_get(:@specs)[:revision],
+version_output
+    end
   end
 end
